@@ -5,7 +5,7 @@ if [ "$#" -ne 5 ]; then
     echo "the syntax should be ./create-env.sh <<ami-id>> <<key-name>> <<security-group>> <<launch-configuration>> <<desired count of instances>> "
     exit 0
 else
-echo "the parameters are perfect and continuing to execute the script !"
+    echo "the parameters are perfect and continuing to execute the script !"
 fi
 
 ami=$1
@@ -14,9 +14,10 @@ security_group=$3
 launch_configuration=$4
 count=$5
 
-if [ "$count" =~ ^-?[0-9]+$ ]; then 
-echo "please enter positive integer as count"
-exit 0
+if ! [[ "$count" =~ ^-?[0-9]+$ ]] 
+then 
+    echo "please enter positive integer as count"
+    exit 0
 fi
 
 aws elb create-load-balancer --load-balancer-name itmo544rshirke --listeners Protocol=HTTP,LoadBalancerPort=80,InstanceProtocol=HTTP,InstancePort=80 --subnets subnet-d1bd94b5 --security-groups $security_group
