@@ -1,0 +1,1 @@
+aws rds create-db-instance --db-instance-identifier rshirke --allocated-storage 20 --db-instance-class db.m1.small --engine mysql --vpc-security-group-ids sg-1682e96f --master-username rshirke --master-user-password rshirke123
